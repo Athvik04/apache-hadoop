@@ -1,3 +1,5 @@
+//4
+
 import java.io.IOException;
 import java.util.StringTokenizer;
 import org.apache.hadoop.conf.Configuration;
@@ -11,7 +13,8 @@ public class WeatherMapReduce {
     public static class WeatherMapper extends Mapper<LongWritable, Text, Text, DoubleWritable>{
         private final static DoubleWritable temperature = new DoubleWritable();
         private Text date = new Text();
-        public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+        public void map(LongWritable key, Text value, Context context) 
+                throws IOException, InterruptedException {
             String[] line = value.toString().split(",");
             if (line.length == 3) {
                 date.set(line[0]);
@@ -23,7 +26,8 @@ public class WeatherMapReduce {
      
     public static class WeatherReducer extends Reducer<Text,DoubleWritable,Text,DoubleWritable> {
         private DoubleWritable result = new DoubleWritable();
-        public void reduce(Text key, Iterable<DoubleWritable> values, Context context ) throws IOException, InterruptedException {
+        public void reduce(Text key, Iterable<DoubleWritable> values, Context context ) 
+                throws IOException, InterruptedException {
             double sum = 0;
             int count = 0;
             for (DoubleWritable val : values) {

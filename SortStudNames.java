@@ -1,3 +1,5 @@
+//3
+
 import java.io.IOException;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -12,21 +14,23 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class SortStudNames {
     public static class SortMapper extends Mapper<LongWritable, Text, Text, Text> {
-        protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+        protected void map(LongWritable key, Text value, Context context) 
+                throws IOException, InterruptedException {
             String[] token = value.toString().split(",");
             context.write(new Text(token[1]), new Text(token[0] + "-" + token[1]));
         }
     }
 
     public static class SortReducer extends Reducer<Text, Text, NullWritable, Text> {
-        public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
-            for (Text details : values) {
+        public void reduce(Text key, Iterable<Text> values, Context context) 
+                throws IOException, InterruptedException {
+            for (Text details : values)
                 context.write(NullWritable.get(), details);
-            }
         }
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
+    public static void main(String[] args) 
+            throws IOException, InterruptedException, ClassNotFoundException {
         Configuration conf = new Configuration();
         Job job = new Job(conf);
         job.setJarByClass(SortStudNames.class);
