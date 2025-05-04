@@ -9,14 +9,14 @@ import org.apache.hadoop.mapred.Reporter;
 
 public class WC_Reducer  extends MapReduceBase implements 
 Reducer<Text,IntWritable,Text,IntWritable>  
-{     
+{    // adding all the values of the same key 
   public void reduce(Text key, Iterator<IntWritable> values,
                     OutputCollector<Text,IntWritable> output,     
                     Reporter reporter) 
-            throws IOException  {     
+            throws IOException  {
     int sum=0;     
     while (values.hasNext())
-      sum+=values.next().get();      
-    output.collect(key,new IntWritable(sum));     
+      sum+=values.next().get(); //fletches the actual value of the key ie 1 in this case
+    output.collect(key,new IntWritable(sum));  // for the same key, the sum of all the values is collected
   }     
 }  

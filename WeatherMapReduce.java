@@ -45,7 +45,7 @@ public class WeatherMapReduce {
         Job job = Job.getInstance(conf, "weather analysis");
         job.setJarByClass(WeatherMapReduce.class);
         job.setMapperClass(WeatherMapper.class);
-        job.setReducerClass(WeatherReducer.class);
+        job.setReducerClass(WeatherReducer.class);  //no combiner class
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(DoubleWritable.class);
         FileInputFormat.setInputPaths(job, new Path("input.txt"));
@@ -53,3 +53,7 @@ public class WeatherMapReduce {
         System.exit(job.waitForCompletion(true)?0 : 1);
     }
 }
+
+2024-01-01, karnataka, 25.0
+2024-01-02, karnataka, 26.0
+2024-01-03, karnataka, 27.0

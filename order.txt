@@ -1,3 +1,5 @@
+demo.Pig    customer.csv    order.csv
+
 customers = LOAD '/home/cloudera/Desktop/customer.csv' USING PigStorage(',') 
             AS (customerID:chararray, customerName:chararray, 
                 customerAddress:chararray, customerPhone:chararray );
@@ -17,3 +19,5 @@ joined_data = JOIN
                 customers BY customerID;
                 
 DUMP joined_data;
+
+to run: pig -x local demo.pig

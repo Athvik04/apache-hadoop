@@ -43,3 +43,7 @@ public class SortStudNames {
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 }
+
+1001, ath
+1002, dis
+1003, deek
