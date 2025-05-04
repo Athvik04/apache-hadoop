@@ -7,7 +7,8 @@ import org.apache.hadoop.mapred.FileOutputFormat;
 import org.apache.hadoop.mapred.JobClient;     
 import org.apache.hadoop.mapred.JobConf;     
 import org.apache.hadoop.mapred.TextInputFormat;     
-import org.apache.hadoop.mapred.TextOutputFormat;     
+import org.apache.hadoop.mapred.TextOutputFormat;    
+
 public class WC_Runner {     
   public static void main(String[] args) throws IOException 
   {     
@@ -23,5 +24,5 @@ public class WC_Runner {
     FileInputFormat.setInputPaths(conf,new Path("input.txt"));     
     FileOutputFormat.setOutputPath(conf,new Path("output"));      
     JobClient.runJob(conf);     
-  }     
+  }    
 }    
