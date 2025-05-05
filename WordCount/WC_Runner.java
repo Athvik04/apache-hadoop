@@ -19,8 +19,8 @@ public class WC_Runner {
     conf.setMapperClass(WC_Mapper.class);     
     conf.setCombinerClass(WC_Reducer.class);     
     conf.setReducerClass(WC_Reducer.class);          
-    conf.setInputFormat(TextInputFormat.class);     
-    conf.setOutputFormat(TextOutputFormat.class);            
+    conf.setInputFormat(TextInputFormat.class);    //  
+    conf.setOutputFormat(TextOutputFormat.class);  //        
     FileInputFormat.setInputPaths(conf,new Path("input.txt"));     
     FileOutputFormat.setOutputPath(conf,new Path("output"));      
     JobClient.runJob(conf);     
