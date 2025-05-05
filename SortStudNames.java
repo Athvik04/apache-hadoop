@@ -17,7 +17,8 @@ public class SortStudNames {
         protected void map(LongWritable key, Text value, Context context) 
                 throws IOException, InterruptedException {
             String[] token = value.toString().split(",");
-            context.write(new Text(token[1]), new Text(token[0] + "-" + token[1]));
+            context.write(new Text(token[1]), new Text(token[0] + "-" + token[1])); 
+            // Emit name as key and ID-name as value
         }
     }
 
@@ -25,7 +26,7 @@ public class SortStudNames {
         public void reduce(Text key, Iterable<Text> values, Context context) 
                 throws IOException, InterruptedException {
             for (Text details : values)
-                context.write(NullWritable.get(), details);
+                context.write(NullWritable.get(), details); // Output the sorted names
         }
     }
 
