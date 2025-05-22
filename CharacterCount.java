@@ -1,5 +1,4 @@
 //2
-//package sharath;
 import java.io.IOException;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -27,15 +26,13 @@ public class CharacterCount {
     }
 
     public static class CharCountReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
-        private IntWritable result = new IntWritable();
 
         public void reduce(Text key, Iterable<IntWritable> values, Context context) 
                 throws IOException, InterruptedException {
             int sum = 0;
             for (IntWritable val : values)
                 sum += val.get();
-            result.set(sum);
-            context.write(key, result);
+            context.write(key, new IntWritable(sum));
         }
     }
 
