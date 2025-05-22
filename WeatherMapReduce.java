@@ -1,5 +1,4 @@
 //4
-
 import java.io.IOException;
 import java.util.StringTokenizer;
 import org.apache.hadoop.conf.Configuration;
@@ -25,7 +24,6 @@ public class WeatherMapReduce {
     }
      
     public static class WeatherReducer extends Reducer<Text,DoubleWritable,Text,DoubleWritable> {
-        private DoubleWritable result = new DoubleWritable();
         public void reduce(Text key, Iterable<DoubleWritable> values, Context context ) 
                 throws IOException, InterruptedException {
             double sum = 0;
@@ -35,8 +33,7 @@ public class WeatherMapReduce {
                 count++;
             }
             double avg = sum / count;
-            result.set(avg);
-            context.write(key, result);
+            context.write(key, new DoubleWritable(avg));
         }
     }
 
